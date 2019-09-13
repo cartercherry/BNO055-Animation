@@ -1,4 +1,4 @@
-# BNO055-Animation
+# BNO055-Animation     cartercherry&pi;
 BNO055 9 dof sensor. 
 Plotting live data with matplotlib.animation.funcAnimation
 Runs at 9 frames/sec
