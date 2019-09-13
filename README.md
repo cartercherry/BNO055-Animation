@@ -12,5 +12,5 @@ important that the blit=True option set in FuncAnimation().
 Noticed no difference in speed whether numpy arrays were used, so  using python
 lists, append(), and pop()
 
-These are my personal notes.  
+These are my personal notes.  Thanks to Paul McWhorter for inspiration to plot live data.  
 
