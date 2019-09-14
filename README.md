@@ -1,6 +1,6 @@
 # BNO055-Animation     cartercherry&pi;
 BNO055 9 dof sensor. 
-Plotting live data with matplotlib.animation.funcAnimation
+Plotting live data with matplotlib.animation.funcAnimation.  
 Runs at 9 frames/sec
 
 main.cpp can be renamed to run in an arduino ide instead of platformIO with esp32 as I am doing.  
