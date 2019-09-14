@@ -14,6 +14,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from time import sleep
 import matplotlib.animation as animation
+import time
 
 # open serial port for data stream reading
 BNO055Data = serial.Serial('COM3', 115200)  # data from sensor on COM3
@@ -108,6 +109,8 @@ def getData():
 
 
 def animate(i):
+    # time each animate invocation
+    #start = time.perf_counter()
 
     global acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z, mag_x, mag_y, mag_z, quat_w, quat_x, quat_y, quat_z
 
@@ -154,6 +157,8 @@ def animate(i):
     lineyq.set_ydata(quat_y)
     linezq.set_ydata(quat_z)
 
+    #stop = time.perf_counter()
+    print(f'{(stop-start)*1000:.2f}ms')
     return linex, liney, linez, linexg, lineyg, linezg, linexm, lineym, linezm, linewq, linexq, lineyq, linezq
 
 
