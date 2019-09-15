@@ -1,9 +1,10 @@
 #########################################################################################################
 # animate2.py reads BNO055 data on COM3, 115200 and plots live data into 4 subplots
 # platformIO/Projects/BNO055/main.cpp reads data into COM3
-# update 9/13/19  runs at 9 frames/sec in 4 subplots - push from VS code
+# update 9/14/19  runs at 9 frames/sec in 4 subplots - push from VS code
 # using list append/pop methods and funcAnimation()  blit=True
 # No numpy arrays - didn't really increase frame rate
+#
 # received data_array[] format:
 # 0       1       2       3       4       5       6       7       8     9        10      11      12
 # acc_x   acc_y   acc_z   gyro_x  gyro_y  gyro_z  mag_x   mag_y   mag_z quat_w    quat_x  quat_y  quat_z
