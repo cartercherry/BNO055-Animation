@@ -19,7 +19,7 @@ import time
 
 # open serial port for data stream reading
 BNO055Data = serial.Serial('COM3', 115200)  # data from sensor on COM3
-sleep(0.1)
+sleep(0.2)
 BNO055Data.flushInput()  # get rid of old data in serial buffer
 
 
