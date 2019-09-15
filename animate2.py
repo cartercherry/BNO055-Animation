@@ -159,7 +159,7 @@ def animate(i):
     linezq.set_ydata(quat_z)
 
     #stop = time.perf_counter()
-    print(f'{(stop-start)*1000:.2f}ms')
+    # print(f'{(stop-start)*1000:.2f}ms')
     return linex, liney, linez, linexg, lineyg, linezg, linexm, lineym, linezm, linewq, linexq, lineyq, linezq
 
 
