@@ -119,7 +119,7 @@ def animate(i):
     # time each animate invocation
     #start = time.perf_counter()
 
-    global acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z, mag_x, mag_y, mag_z, quat_w, quat_x, quat_y, quat_z
+    #global acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z, mag_x, mag_y, mag_z, quat_w, quat_x, quat_y, quat_z
 
     data_array = getData()
     acc_x.append(data_array[0])
