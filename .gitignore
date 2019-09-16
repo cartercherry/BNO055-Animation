@@ -3,3 +3,5 @@ settings.json
 timeCode.py
 arduino.json
 c_cpp_properties.json
+pitch.py
+roll.py

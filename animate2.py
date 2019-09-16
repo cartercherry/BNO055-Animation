@@ -84,6 +84,11 @@ ax[0, 0].grid(True)  # grids are nice
 ax[0, 1].grid(True)
 ax[1, 0].grid(True)
 ax[1, 1].grid(True)
+ax[0, 0].set_facecolor('beige')
+ax[0, 1].set_facecolor('beige')
+ax[1, 0].set_facecolor('beige')
+ax[1, 1].set_facecolor('beige')
+
 
 # plt.style.use('seaborn')  # fivethirtyeight
 # plt.tight_layout()
