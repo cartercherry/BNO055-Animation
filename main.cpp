@@ -11,11 +11,26 @@
 
 Adafruit_BNO055 bno = Adafruit_BNO055(-1, 0x28);
 
+uint8_t accel = 0;
+
+uint8_t calibrateSensor()
+{
+  uint8_t system, gyro, accel, mg = 0;
+  bno.getCalibration(&system, &gyro, &accel, &mg);
+  Serial.print("CALIBRATION: Sys=");
+  Serial.print(system, DEC);
+  Serial.print(" Gyro=");
+  Serial.print(gyro, DEC);
+  Serial.print(" Accel=");
+  Serial.print(accel, DEC);
+  Serial.print(" Mag=");
+  Serial.println(mg, DEC);
+  return accel;
+}
+
 void setup(void)
 {
   Serial.begin(115200);
-  // Serial.println("Orientation Sensor Raw Data Test");
-  //Serial.println("");
 
   /* Initialise the sensor */
   if (!bno.begin())
@@ -36,7 +51,18 @@ void setup(void)
 
   bno.setExtCrystalUse(true);
 
-  //Serial.println("Calibration status values: 0=uncalibrated, 3=fully calibrated");
+  //Calibrate sensor by moving around
+  Serial.println("Calibration status values: 0=uncalibrated, 3=fully calibrated");
+  Serial.println("Press any key and move sensor until calibration complete.");
+  int keyPress = Serial.parseInt();
+  while (Serial.available() == 0)
+  {
+    ; //wait for user to read instructions
+  }
+  while (accel < 3)
+  {
+    accel = calibrateSensor();
+  }
 }
 
 void loop(void)
@@ -54,7 +80,6 @@ void loop(void)
   imu::Quaternion quat = bno.getQuat();
 
   /* Display the floating point data */
-
   Serial.print(acc.x(), 4);
   Serial.print(", ");
   Serial.print(acc.y(), 4);
@@ -81,18 +106,6 @@ void loop(void)
   Serial.print(", ");
   Serial.print(quat.z(), 4);
   Serial.println("");
-
-  /* Display calibration status for each sensor. */
-  // uint8_t system, gyro, accel, mag = 0;
-  // bno.getCalibration(&system, &gyro, &accel, &mag);
-  // Serial.print("CALIBRATION: Sys=");
-  // Serial.print(system, DEC);
-  // Serial.print(" Gyro=");
-  // Serial.print(gyro, DEC);
-  // Serial.print(" Accel=");
-  // Serial.print(accel, DEC);
-  // Serial.print(" Mag=");
-  // Serial.println(mag, DEC);
 
   delay(BNO055_SAMPLERATE_DELAY_MS);
 }
