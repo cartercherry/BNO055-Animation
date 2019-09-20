@@ -19,7 +19,7 @@ degrees_array = [0]*50  # holds last 50 degree data from BNO055
 
 
 def getSerialData(serialPort):
-    while serialPort.inWaiting == 0:
+    while serialPort.inWaiting() == 0:
         pass
     try:
         data_array = serialPort.readline().decode('utf-8')
