@@ -1,6 +1,6 @@
 # BNO055-Animation
 
-auth: cartercherry&pi;
+cartercherry&pi;
 
 BNO055 9 dof sensor.
 Plotting live data with matplotlib.animation.FuncAnimation.  
@@ -21,6 +21,5 @@ tilt.py uses the BNO055 acc_x, acc_y and acc_z vectors to calculate roll and pit
 animation in real time. Uses same technique as animate2.py.
 
 tilt.py serial data format expected at 115200 baud:
-[0]...[1]...[2]
-
+[0]...[1]...[2]...
 acc_x acc_y acc_z
