@@ -1,9 +1,9 @@
 #########################################################################################################
 # animate2.py reads BNO055 data on COM3, 115200 and plots live data into 4 subplots
-# platformIO/Projects/BNO055/main.cpp reads data into COM3
-# update 9/14/19  runs at 9 frames/sec in 4 subplots - push from VS code
-# using list append/pop methods and funcAnimation()  blit=True
-# No numpy arrays - didn't really increase frame rate
+#
+# Runs at 9 frames/sec in 4 subplots
+# using list append/pop methods and FuncAnimation()  blit=True
+# 9/19/19 Removed numpy arrays - didn't really increase frame rate
 #
 # received data_array[] format:
 # 0       1       2       3       4       5       6       7       8     9        10      11      12
@@ -11,7 +11,6 @@
 #########################################################################################################
 
 import serial
-import numpy as np
 import matplotlib.pyplot as plt
 from time import sleep
 import matplotlib.animation as animation
@@ -50,16 +49,17 @@ x = [i for i in range(50)]  # x axis for data plots
 
 # setup lines to hold data for each stream
 # these will be updated by animate()
-linex, = ax[0, 0].plot(x, acc_x, label='acc_x')
+# comma after each 'lineXX' indicate tuple
+linex, = ax[0, 0].plot(x, acc_x, label='acc_x')  # acc
 liney, = ax[0, 0].plot(x, acc_y, label='acc_y')
 linez, = ax[0, 0].plot(x, acc_z, label='acc_z')
-linexg, = ax[0, 1].plot(x, gyro_x, label='gyro_x')
+linexg, = ax[0, 1].plot(x, gyro_x, label='gyro_x')  # gyro
 lineyg, = ax[0, 1].plot(x, gyro_y, label='gyro_y')
 linezg, = ax[0, 1].plot(x, gyro_z, label='gyro_z')
-linexm, = ax[1, 0].plot(x, mag_x, label='mag_x')
+linexm, = ax[1, 0].plot(x, mag_x, label='mag_x')  # magnetometer
 lineym, = ax[1, 0].plot(x, mag_y, label='mag_y')
 linezm, = ax[1, 0].plot(x, mag_z, label='mag_z')
-linewq, = ax[1, 1].plot(x, quat_w, label='quat_w')
+linewq, = ax[1, 1].plot(x, quat_w, label='quat_w')  # quaternions
 linexq, = ax[1, 1].plot(x, quat_x, label='quat_x')
 lineyq, = ax[1, 1].plot(x, quat_y, label='quat_y')
 linezq, = ax[1, 1].plot(x, quat_z, label='quat_z')
@@ -90,9 +90,7 @@ ax[1, 0].set_facecolor('beige')
 ax[1, 1].set_facecolor('beige')
 
 
-# plt.style.use('seaborn')  # fivethirtyeight
-# plt.tight_layout()
-plt.suptitle('BNO055 Live Data')
+plt.suptitle('BNO055 Live Data')  # top level title
 
 
 def getData():
@@ -116,16 +114,12 @@ def getData():
 
 
 def animate(i):
-    # time each animate invocation
-    #start = time.perf_counter()
-
-    #global acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z, mag_x, mag_y, mag_z, quat_w, quat_x, quat_y, quat_z
-
-    data_array = getData()
-    acc_x.append(data_array[0])
+    '''updates live plot with  new data, called by FuncAnimation()'''
+    data_array = getData()  # get the latest data from serial port
+    acc_x.append(data_array[0])  # only keeping last 50 data points
     acc_x.pop(0)
     acc_y.append(data_array[1])
-    acc_y.pop(0)  # acc_y = acc_y[1:]  seems no different that acc_y.pop(0)
+    acc_y.pop(0)
     acc_z.append(data_array[2])
     acc_z.pop(0)
     gyro_x.append(data_array[3])
@@ -149,7 +143,8 @@ def animate(i):
     quat_z.append(data_array[12])
     quat_z.pop(0)
 
-    # update each line with latest data for animation
+    # update each line with latest data for animation to plot
+    # x array is the  x axis and is already set for each lineXX
     linex.set_ydata(acc_x)
     liney.set_ydata(acc_y)
     linez.set_ydata(acc_z)
@@ -168,6 +163,9 @@ def animate(i):
     return linex, liney, linez, linexg, lineyg, linezg, linexm, lineym, linezm, linewq, linexq, lineyq, linezq,
 
 
+# magic happens in FuncAnimation(...).  blit=True: only the data points are updated, nothing else
+# blit makes the live plot as fast as possible
+# interval=10ms,  just means run as fast as possible
 ani = animation.FuncAnimation(
     fig, animate, interval=10, blit=True, save_count=10, cache_frame_data=True)  # blit=True vry important!
 
