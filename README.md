@@ -18,6 +18,8 @@ Very important that blit=True in FuncAnimation().
 Noticed no difference in animation frame rate whether numpy arrays were used, so used
 python lists, append(), and pop().
 
+compass.py plots magnetic heading as live animation. Uses mag_x, mag_y vectors from main.cpp serial stream.
+
 tilt.py uses the BNO055 acc_x, acc_y and acc_z vectors to calculate roll and pitch using matplotlib
 animation in real time. Uses same technique as animate2.py.
 
