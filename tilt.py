@@ -64,7 +64,7 @@ def calcPitch(acc_x, acc_z):
 def getSerialData(serialPort):
     # gets the latest BNO055 data, calculates the roll and pitch, and updates
     # the  ys, ys1 arrays holding the roll, pitch data
-    while serialPort.inWaiting == 0:
+    while serialPort.inWaiting() == 0:
         pass
     try:
         dataString = serialPort.readline().decode('utf-8')
