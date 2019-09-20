@@ -18,8 +18,9 @@ Noticed no difference in animation frame rate whether numpy arrays were used, so
 python lists, append(), and pop().
 
 tilt.py uses the BNO055 acc_x, acc_y and acc_z vectors to calculate roll and pitch using matplotlib
-animation inreal time. Uses same technique as animate2.py.
+animation in real time. Uses same technique as animate2.py.
 
 tilt.py serial data format expected at 115200 baud:
 [0]...[1]...[2]
+
 acc_x acc_y acc_z
