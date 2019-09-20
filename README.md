@@ -26,3 +26,8 @@ animation in real time. Uses same technique as animate2.py.
 tilt.py serial data format expected at 115200 baud:
 [0]...[1]...[2]...
 acc_x acc_y acc_z
+
+digitalFilter.py: rudimentary low pass filter of tilt.py. Uses a weighted average of new roll or tilt value
+with their previous value. Results in smoothed, but slightly delayed response to changes.  
+ alpha variable determines how aggressive the smoothing is.  
+ alpha=.8 smoothes plot without excessive delay in response. A first attempt.
