@@ -1,5 +1,5 @@
 #########################################################################################################
-# animate2.py reads BNO055 data on COM3, 115200 and plots live data into 4 subplots
+# animate2.py reads BNO055 data on COM3, 115200 and plots live data into 4 subplots  !!
 #
 # Runs at 9 frames/sec in 4 subplots
 # using list append/pop methods and FuncAnimation()  blit=True
